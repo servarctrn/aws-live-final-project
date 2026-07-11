@@ -1,38 +1,78 @@
-# run command to update your ubuntu server
-sudo apt-get update
-# run command to install mysql client on your server
-sudo apt-get install mysql-client
+# Employee App Setup
 
-# For python and related frameworks
+Setup instructions for deploying and running the Employee application on an Ubuntu server with a MySQL (RDS) backend.
+
+## 1. Update Ubuntu Server
+
+```bash
+sudo apt-get update
+```
+
+## 2. Install MySQL Client
+
+```bash
+sudo apt-get install mysql-client
+```
+
+## 3. Install Python and Required Frameworks
+
+```bash
 sudo apt-get install python3
 sudo apt-get install python3-flask
 sudo apt-get install python3-pymysql
 sudo apt-get install python3-boto3
+```
 
-# for running application
+## 4. Run the Application
+
+```bash
 sudo python3 Empapp.py
+```
 
-## command to connect to RDS: 
----- mysql -h <<mysql instance endpoint>> -P 3306 -u <<username>> -p ---
+## 5. Connect to RDS
 
-## command to see the list out databases in your database ## 
+```bash
+mysql -h <mysql-instance-endpoint> -P 3306 -u <username> -p
+```
+
+Replace `<mysql-instance-endpoint>` and `<username>` with your actual RDS endpoint and MySQL username. You'll be prompted for the password.
+
+## 6. Database Commands
+
+### List existing databases
+
+```sql
 show databases;
+```
 
-## command to create a database ## 
+### Create a new database
+
+```sql
 create database employee;
+```
 
-# To check if the database is created ## 
+### Verify the database was created
+
+```sql
 show databases;
-This will show the list of all databases in your created DB
+```
 
-# Choose your created database: 
+This will display the list of all databases, including the one you just created.
+
+### Select the database to use
+
+```sql
 use employee;
+```
 
-# To create "employee" table in your "employee" database 
-CREATE TABLE employee(
-empid VARCHAR(20),
-firstname VARCHAR(30),
-lastname VARCHAR(30),
-pri_skill VARCHAR(50),
-location VARCHAR(50)
+### Create the `employee` table
+
+```sql
+CREATE TABLE employee (
+    empid VARCHAR(20),
+    firstname VARCHAR(30),
+    lastname VARCHAR(30),
+    pri_skill VARCHAR(50),
+    location VARCHAR(50)
 );
+```
